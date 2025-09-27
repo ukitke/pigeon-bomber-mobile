@@ -462,62 +462,61 @@ body {
         display: none !important;
     }
 
-    /* Compact header - 12% of screen */
+    /* Ultra compact header - 10% of screen */
     .game-header {
-        height: 12vh !important;
-        padding: 5px !important;
+        height: 10vh !important;
+        padding: 3px !important;
         margin-bottom: 0 !important;
     }
 
     .game-header h1 {
-        font-size: 1.2em !important;
-        margin-bottom: 2px !important;
+        font-size: 1em !important;
+        margin-bottom: 1px !important;
     }
 
     .game-info {
-        gap: 3px !important;
+        gap: 2px !important;
         justify-content: center !important;
     }
 
     .info-item {
-        min-width: 50px !important;
-        padding: 2px 4px !important;
+        min-width: 40px !important;
+        padding: 1px 3px !important;
     }
 
     .info-item .label {
-        font-size: 0.6em !important;
+        font-size: 0.5em !important;
     }
 
     .info-item span:last-child {
-        font-size: 0.9em !important;
+        font-size: 0.8em !important;
     }
 
-    /* Game canvas - 60% of screen height */
+    /* Game canvas - 65% of screen height */
     body.game-started #gameCanvas {
         position: fixed;
-        top: 12vh; /* Start after header */
+        top: 10vh; /* Start after header */
         left: 0;
         width: 100vw !important;
-        height: 60vh !important; /* 60% of screen */
+        height: 65vh !important; /* 65% of screen */
         border: none;
         border-radius: 0;
         margin: 0;
         padding: 0;
     }
 
-    /* Mobile controls - 28% of screen at bottom */
+    /* Mobile controls - 25% of screen at bottom */
     body.game-started .mobile-controls {
         position: fixed !important;
         bottom: 0 !important;
         left: 0 !important;
         right: 0 !important;
-        height: 28vh !important; /* 28% of screen */
+        height: 25vh !important; /* 25% of screen */
         justify-content: space-between !important;
         align-items: center !important;
         z-index: 1000 !important;
-        padding: 10px !important;
-        background: rgba(0, 0, 0, 0.1) !important;
-        backdrop-filter: blur(5px) !important;
+        padding: 8px !important;
+        background: rgba(0, 0, 0, 0.05) !important;
     }
 
     /* Menu covers everything initially */

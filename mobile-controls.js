@@ -62,14 +62,13 @@ class MobileControls {
 
             // Keyboard events for virtual controls
             const keyMap = {
-                'moveUp': 'KeyW',
-                'moveLeft': 'KeyA',
-                'moveDown': 'KeyS',
-                'moveRight': 'KeyD',
-                'bombBtn': 'Space',
+                'superJumpBtn': 'KeyW',
+                'sniperBtn': 'KeyA',
+                'missileBtn': 'KeyS',
+                'clusterBtn': 'KeyD',
+                'spaceBtn': 'Space',
                 'abilityBtn': 'ShiftLeft',
-                'sniperBtn': 'ArrowLeft',
-                'missileBtn': 'ArrowDown'
+                'escBtn': 'Escape'
             };
 
             const key = keyMap[button.id];
@@ -147,19 +146,19 @@ class MobileControls {
         if (!this.game.player || !this.game.keys) return;
 
         switch (action) {
-            case 'left':
+            case 'superJump':
+                this.game.keys['KeyW'] = pressed;
+                break;
+            case 'sniper':
                 this.game.keys['KeyA'] = pressed;
                 if (pressed) this.game.player.facing = -1;
                 break;
-            case 'right':
+            case 'missile':
+                this.game.keys['KeyS'] = pressed;
+                break;
+            case 'cluster':
                 this.game.keys['KeyD'] = pressed;
                 if (pressed) this.game.player.facing = 1;
-                break;
-            case 'jump':
-                this.game.keys['KeyW'] = pressed;
-                break;
-            case 'down':
-                this.game.keys['KeyS'] = pressed;
                 break;
             case 'space':
                 this.game.keys['Space'] = pressed;
@@ -168,22 +167,6 @@ class MobileControls {
                 // Toggle evolution ability
                 if (pressed) {
                     this.game.player.activateEvolutionAbility(this.game);
-                }
-                break;
-            case 'sniper':
-                if (pressed) {
-                    this.game.keys['ArrowLeft'] = true;
-                    setTimeout(() => {
-                        this.game.keys['ArrowLeft'] = false;
-                    }, 100);
-                }
-                break;
-            case 'missile':
-                if (pressed) {
-                    this.game.keys['ArrowDown'] = true;
-                    setTimeout(() => {
-                        this.game.keys['ArrowDown'] = false;
-                    }, 100);
                 }
                 break;
             case 'esc':

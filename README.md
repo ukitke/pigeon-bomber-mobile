@@ -48,21 +48,26 @@ pigeon-bomber-mobile/
 └── README.md           # Documentazione
 ```
 
-## 🎮 CONTROLLI MOBILE
+## 🎮 CONTROLLI MOBILE - PLAYSTATION STYLE
 
-### 🎯 MOVIMENTO
-- **↑** - Salto / Movimento verso l'alto
-- **↓** - Movimento verso il basso
-- **←** - Movimento a sinistra
-- **→** - Movimento a destra
+### 🕹️ ANALOG STICK SINISTRA
+- **Touch & drag** - Movimento fluido in tutte le direzioni
+- **Multi-input** - Alto + destra contemporaneamente
+- **Auto-centro** - Ritorna al centro quando rilasci
+- **Deadzone** - Movimento preciso con zona morta
 
-### 💥 AZIONI PRINCIPALI
-- **💣** - Lancia bomba di cacca
-- **⚡** - Attiva abilità evoluzione
+### 💥 CENTRO - BOMBA PRINCIPALE
+- **💣** - Tocco singolo per lanciare bomba
+- **Dimensione grande** - Facile da premere
+- **Colore rosso** - Visibilità immediata
 
-### 🎯 ABILITÀ SPECIALI
-- **🎯** - Attiva modalità Sniper (mirino mobile)
-- **🚀** - Lancia Missile Controllabile
+### 🎯 CROCE DESTRO - ABILITÀ
+- **⚡ CENTRO** - Abilità evoluzione
+- **↑** - Super Jump (salto potenziato)
+- **→** - Cluster Bomb (bombe multiple)
+- **↓** - Missile Controllabile
+- **←** - Sniper (mirino mobile)
+- **ESC** - Esce da modalità sniper
 
 ## 📱 LAYOUT RESPONSIVE
 
