@@ -64,10 +64,10 @@ class Game {
         // Mobile controls
         this.mobileControls = null;
 
-        // Debug system
+        // Debug system - DISABLED ON MOBILE
         this.debugMessages = [];
-        this.debugEnabled = true;
-        this.createDebugUI();
+        this.debugEnabled = false;
+        // this.createDebugUI(); // Disabled on mobile
     }
     
     // Debug System

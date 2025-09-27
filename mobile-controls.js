@@ -16,18 +16,20 @@ class MobileControls {
         const buttons = document.querySelectorAll('.control-btn');
 
         buttons.forEach(button => {
-            // Touch events for mobile
+            // Touch events for mobile - optimized for fluidity
             button.addEventListener('touchstart', (e) => {
                 e.preventDefault();
+                e.stopPropagation();
                 this.handleButtonPress(button.dataset.action);
                 button.classList.add('active');
-            });
+            }, { passive: false });
 
             button.addEventListener('touchend', (e) => {
                 e.preventDefault();
+                e.stopPropagation();
                 this.handleButtonRelease(button.dataset.action);
                 button.classList.remove('active');
-            });
+            }, { passive: false });
 
             // Mouse events for desktop testing
             button.addEventListener('mousedown', (e) => {
@@ -79,18 +81,41 @@ class MobileControls {
             }
         });
 
-        // Prevent default touch behaviors
+        // Global touch event handlers for multi-touch support
+        this.setupGlobalTouchHandlers();
+
+        // Prevent default touch behaviors on controls
         document.addEventListener('touchstart', (e) => {
             if (e.target.classList.contains('control-btn')) {
                 e.preventDefault();
             }
-        });
+        }, { passive: false });
 
         document.addEventListener('touchmove', (e) => {
             if (e.target.classList.contains('control-btn')) {
                 e.preventDefault();
             }
-        });
+        }, { passive: false });
+    }
+
+    setupGlobalTouchHandlers() {
+        // Handle touch end globally to catch missed releases
+        document.addEventListener('touchend', (e) => {
+            // Check if touch ended outside any control button
+            const endedOutside = !e.target.classList.contains('control-btn');
+            if (endedOutside) {
+                // Release all buttons when touch ends outside
+                this.activeButtons.forEach(action => {
+                    this.executeAction(action, false);
+                });
+                this.activeButtons.clear();
+
+                // Remove active class from all buttons
+                document.querySelectorAll('.control-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+            }
+        }, { passive: false });
     }
 
     handleButtonPress(action) {
@@ -169,6 +194,7 @@ class MobileControls {
     }
 
     update() {
+        // Mobile controls update - no debug needed
         // Continuous updates for mobile controls if needed
         // This can be used for analog stick simulation or other advanced controls
     }

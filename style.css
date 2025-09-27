@@ -375,44 +375,114 @@ body {
     }
 }
 
-/* MOBILE ONLY - Clean mobile interface */
+/* MOBILE ONLY - Ultra clean interface with perfect proportions */
 @media (max-width: 768px) {
-    /* Hide debug panel completely on mobile */
-    #debugPanel {
-        display: none !important;
-    }
-
-    /* Hide controls explanation on mobile */
+    /* Hide ALL unnecessary elements on mobile */
+    #debugPanel,
     .controls-info {
         display: none !important;
     }
 
-    /* Hide game header on mobile after game starts */
-    body.game-started .game-header {
+    /* Small header - 1/6 of screen */
+    .game-header {
+        height: 16.67vh !important; /* 1/6 */
+        padding: 8px !important;
+        margin-bottom: 0 !important;
+    }
+
+    .game-header h1 {
+        font-size: 1.5em !important;
+        margin-bottom: 5px !important;
+    }
+
+    .game-info {
+        gap: 5px !important;
+    }
+
+    .info-item {
+        min-width: 60px !important;
+        padding: 4px 6px !important;
+    }
+
+    .info-item .label {
+        font-size: 0.7em !important;
+    }
+
+    .info-item span:last-child {
+        font-size: 1em !important;
+    }
+
+    /* Game canvas - 3/6 (50%) of screen */
+    body.game-started #gameCanvas {
+        position: fixed;
+        top: 16.67vh; /* Start after header */
+        left: 0;
+        width: 100vw !important;
+        height: 50vh !important; /* 3/6 of screen */
+        border: none;
+        border-radius: 0;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Mobile controls - 2/6 of screen at bottom */
+    body.game-started .mobile-controls {
+        position: fixed !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        height: 33.33vh !important; /* 2/6 */
+        justify-content: space-around !important;
+        align-items: center !important;
+        z-index: 1000 !important;
+        padding: 15px !important;
+        background: rgba(0, 0, 0, 0.1) !important;
+        backdrop-filter: blur(5px) !important;
+    }
+
+    /* Optimize control layout for fluidity */
+    body.game-started .movement-controls {
+        flex: 1 !important;
+        justify-content: center !important;
+        gap: 15px !important;
+    }
+
+    body.game-started .action-controls {
+        flex: 1 !important;
+        justify-content: center !important;
+        gap: 20px !important;
+    }
+
+    body.game-started .special-controls {
+        flex: 1 !important;
+        justify-content: center !important;
+        gap: 20px !important;
+    }
+
+    /* Menu covers everything initially */
+    body:not(.game-started) #gameMenu {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        display: flex !important;
+        background: rgba(0, 0, 0, 0.9) !important;
+    }
+
+    /* Hide canvas when menu is shown */
+    body:not(.game-started) #gameCanvas {
         display: none !important;
     }
 
-    /* Hide game header when menu is shown */
+    /* Hide mobile controls when menu is shown */
+    body:not(.game-started) .mobile-controls {
+        display: none !important;
+    }
+
+    /* Hide header when menu is shown */
     body:not(.game-started) .game-header {
         display: none !important;
-    }
-
-    /* Ensure mobile controls stay visible during game */
-    body.game-started .mobile-controls {
-        display: flex !important;
-    }
-
-    /* Make canvas full width on mobile */
-    #gameCanvas {
-        width: 100%;
-        max-width: none;
-        height: auto;
-        margin-bottom: 0;
-    }
-
-    /* Show menu initially on mobile */
-    body:not(.game-started) #gameMenu {
-        display: flex !important;
     }
 }
 
