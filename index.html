@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pigeon Bomber - Platform Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="game-header">
+            <h1>🐦 PIGEON BOMBER 💣</h1>
+            <div class="game-info">
+                <div class="info-item">
+                    <span class="label">Livello:</span>
+                    <span id="current-level">1</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Vite:</span>
+                    <span id="lives">3</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Punteggio:</span>
+                    <span id="score">0</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Volatile:</span>
+                    <span id="bird-type">Piccione Bomber</span>
+                </div>
+            </div>
+        </div>
+
+        <canvas id="gameCanvas" width="1200" height="600"></canvas>
+
+        <!-- MOBILE CONTROLS -->
+        <div class="mobile-controls" id="mobileControls">
+            <!-- Movement Controls -->
+            <div class="movement-controls">
+                <button class="control-btn move-btn" id="moveUp" data-action="jump">↑</button>
+                <div class="horizontal-controls">
+                    <button class="control-btn move-btn" id="moveLeft" data-action="left">←</button>
+                    <button class="control-btn move-btn" id="moveDown" data-action="down">↓</button>
+                    <button class="control-btn move-btn" id="moveRight" data-action="right">→</button>
+                </div>
+            </div>
+
+            <!-- Action Controls -->
+            <div class="action-controls">
+                <button class="control-btn action-btn" id="bombBtn" data-action="bomb">💣</button>
+                <button class="control-btn action-btn" id="abilityBtn" data-action="ability">⚡</button>
+            </div>
+
+            <!-- Special Controls -->
+            <div class="special-controls">
+                <button class="control-btn special-btn" id="sniperBtn" data-action="sniper">🎯</button>
+                <button class="control-btn special-btn" id="missileBtn" data-action="missile">🚀</button>
+            </div>
+        </div>
+
+        <div class="controls-info">
+            <div class="control-group">
+                <h3>Controlli:</h3>
+                <div class="controls">
+                    <span><strong>WASD</strong> - Movimento e Salto</span>
+                    <span><strong>SPAZIO</strong> - Cacca Principale</span>
+                    <span><strong>↑</strong> - Salto Potenziato | <strong>→</strong> - Cacche a Grappolo</span>
+                    <span><strong>↓</strong> - Missile Controllabile | <strong>←</strong> - Fucile Sniper</span>
+                    <span><strong>SHIFT</strong> - Abilità Evoluzione</span>
+                </div>
+            </div>
+            <div class="abilities">
+                <h3>Abilità:</h3>
+                <div class="ability-list">
+                    <div class="ability" id="ability-jump">↑ Salto Potenziato</div>
+                    <div class="ability" id="ability-cluster">→ Cacche a Grappolo</div>
+                    <div class="ability" id="ability-missile">↓ Missile Controllabile</div>
+                    <div class="ability" id="ability-sniper">← Fucile Sniper</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="game-menu" id="gameMenu">
+            <div class="menu-content">
+                <h2>PIGEON BOMBER</h2>
+                <p>Aiuta il piccione a conquistare tutti i livelli!</p>
+                <button id="startBtn" class="menu-btn">INIZIA GIOCO</button>
+                <button id="gameMasterBtn" class="menu-btn" style="background: linear-gradient(45deg, #ff6b35, #f7931e); color: white; font-weight: bold;">🔥 MODALITÀ GAME MASTER 🔥</button>
+                <button id="instructionsBtn" class="menu-btn">ISTRUZIONI</button>
+            </div>
+        </div>
+
+        <div class="game-over" id="gameOver" style="display: none;">
+            <div class="menu-content">
+                <h2 id="gameOverTitle">GAME OVER</h2>
+                <p id="gameOverText">Il piccione è stato sconfitto!</p>
+                <div class="final-score">
+                    Punteggio Finale: <span id="finalScore">0</span>
+                </div>
+                <button id="restartBtn" class="menu-btn">RIPROVA</button>
+                <button id="menuBtn" class="menu-btn">MENU PRINCIPALE</button>
+            </div>
+        </div>
+
+        <div class="level-complete" id="levelComplete" style="display: none;">
+            <div class="menu-content">
+                <h2>LIVELLO COMPLETATO!</h2>
+                <p id="levelCompleteText">Ottimo lavoro!</p>
+                <div class="evolution-choice" id="evolutionChoice">
+                    <h3>Scegli la tua evoluzione:</h3>
+                    <div class="evolution-options" id="evolutionOptions">
+                        <!-- Opzioni di evoluzione generate dinamicamente -->
+                    </div>
+                </div>
+                <button id="nextLevelBtn" class="menu-btn">LIVELLO SUCCESSIVO</button>
+            </div>
+        </div>
+
+        <div class="instructions" id="instructions" style="display: none;">
+            <div class="menu-content">
+                <h2>ISTRUZIONI</h2>
+                <div class="instruction-text">
+                    <h3>Obiettivo:</h3>
+                    <p>Guida il piccione attraverso 10 livelli pieni di nemici e ostacoli. Sconfiggi tutti i boss mitologici per raggiungere l'obiettivo finale!</p>
+                    
+                    <h3>Controlli Desktop:</h3>
+                    <ul>
+                        <li><strong>W, A, S, D</strong> - Movimento (W per saltare)</li>
+                        <li><strong>SPAZIO</strong> - Lancia bomba principale</li>
+                        <li><strong>Frecce</strong> - Abilità speciali</li>
+                    </ul>
+
+                    <h3>Controlli Mobile:</h3>
+                    <ul>
+                        <li><strong>↑↓←→</strong> - Pulsanti touch per movimento</li>
+                        <li><strong>💣</strong> - Bomba principale</li>
+                        <li><strong>⚡</strong> - Abilità evoluzione</li>
+                        <li><strong>🎯</strong> - Fucile Sniper</li>
+                        <li><strong>🚀</strong> - Missile Controllabile</li>
+                    </ul>
+
+                    <h3>Controlli Virtuali (Tastiera):</h3>
+                    <ul>
+                        <li><strong>W/A/S/D</strong> - Attiva pulsanti virtuali movimento</li>
+                        <li><strong>SPAZIO</strong> - Attiva pulsante bomba</li>
+                        <li><strong>SHIFT</strong> - Attiva pulsante abilità</li>
+                        <li><strong>←/↓</strong> - Attiva pulsanti sniper/missile</li>
+                    </ul>
+
+                    <h3>Nemici:</h3>
+                    <ul>
+                        <li><strong>Goblin Gemelli</strong> - Si muovono insieme</li>
+                        <li><strong>Pipistrelli Volanti</strong> - Attaccano dall'alto</li>
+                        <li><strong>Draghi Sputa-fuoco</strong> - Lanciano palle di fuoco</li>
+                    </ul>
+
+                    <h3>Evoluzioni:</h3>
+                    <p>Completa i livelli per far evolvere il tuo piccione in volatili più potenti!</p>
+                </div>
+                <button id="backBtn" class="menu-btn">INDIETRO</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="player.js"></script>
+    <script src="enemies.js"></script>
+    <script src="levels.js"></script>
+    <script src="bosses.js"></script>
+    <script src="mobile-controls.js"></script>
+    <script src="game.js"></script>
+    <script>
+        // Inizializza il gioco quando la pagina è caricata
+        window.addEventListener('load', () => {
+            const game = new Game();
+            game.init();
+        });
+    </script>
+</body>
+</html>
