@@ -859,14 +859,87 @@ startGameMaster() {
         this.gameState = 'levelComplete';
         this.hideAllMenus();
         this.ui.levelComplete.style.display = 'flex';
-        
+
         // Play level complete sound and victory jingle
         this.playSound('levelComplete');
         this.playVictoryJingle();
-        
+
         // Show evolution options if not max level AND not in Game Master mode
         if (this.currentLevel < 10 && !this.gameMasterMode) {
             this.showEvolutionOptions();
+        }
+
+        // EASTER EGGS - Funny messages for each level
+        this.showEasterEgg();
+    }
+
+    showEasterEgg() {
+        const easterEggs = [
+            "Bravo mezza sega, ora sei pronto a livello 2. Sei quasi più forte di Pio Esposito o Brikel, vedi tu",
+            "Ah ma qui si fa sul serio. Sembri Irdi prima di rompersi a calcetto",
+            "Sarai forte ma mai come Bledar quando fa i tunnel",
+            "Voglio una tequila subito!",
+            "Se avessi gli occhi di Frenki ti avrei già scopato",
+            "Sembri SEM a COD, che bravo",
+            "Dov'è il mio vodka redbull?",
+            "Dammi RUM e lo scoperò...mmm cioè volevo dire berrò",
+            "Elci ne sa di calcio più di te",
+            "Hai battuto Dio, sei Dionis"
+        ];
+
+        const levelIndex = this.currentLevel - 1;
+        if (levelIndex < easterEggs.length) {
+            const easterEggText = document.createElement('div');
+            easterEggText.id = 'easterEgg';
+            easterEggText.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: rgba(255, 215, 0, 0.95);
+                color: #2c3e50;
+                padding: 20px 30px;
+                border-radius: 15px;
+                font-size: 1.2em;
+                font-weight: bold;
+                text-align: center;
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+                z-index: 2000;
+                max-width: 80%;
+                backdrop-filter: blur(10px);
+                border: 3px solid #ffd700;
+                animation: easterEggAppear 0.5s ease-out;
+            `;
+
+            // Add funny animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes easterEggAppear {
+                    0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+                    50% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+                    100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+                }
+            `;
+            document.head.appendChild(style);
+
+            easterEggText.innerHTML = `
+                <div style="margin-bottom: 10px;">🎉 LIVELLO ${this.currentLevel} COMPLETATO! 🎉</div>
+                <div style="font-style: italic; color: #e74c3c;">"${easterEggs[levelIndex]}"</div>
+            `;
+
+            document.body.appendChild(easterEggText);
+
+            // Remove after 4 seconds
+            setTimeout(() => {
+                if (easterEggText.parentNode) {
+                    easterEggText.style.animation = 'easterEggAppear 0.3s ease-in reverse';
+                    setTimeout(() => {
+                        if (easterEggText.parentNode) {
+                            easterEggText.parentNode.removeChild(easterEggText);
+                        }
+                    }, 300);
+                }
+            }, 4000);
         }
     }
     

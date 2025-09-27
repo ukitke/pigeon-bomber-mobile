@@ -1,11 +1,18 @@
-// Mobile Controls System for Pigeon Bomber
+// Mobile Controls System for Pigeon Bomber - NEW ANALOG STICK DESIGN
 class MobileControls {
     constructor(game) {
         this.game = game;
-        this.touchStartX = 0;
-        this.touchStartY = 0;
-        this.isDragging = false;
         this.activeButtons = new Set();
+
+        // Analog stick variables
+        this.analogStick = {
+            active: false,
+            centerX: 0,
+            centerY: 0,
+            currentX: 0,
+            currentY: 0,
+            maxDistance: 35
+        };
 
         this.setupEventListeners();
         this.hideOnDesktop();
@@ -150,7 +157,7 @@ class MobileControls {
             case 'down':
                 this.game.keys['KeyS'] = pressed;
                 break;
-            case 'bomb':
+            case 'space':
                 this.game.keys['Space'] = pressed;
                 break;
             case 'ability':
@@ -173,6 +180,15 @@ class MobileControls {
                     setTimeout(() => {
                         this.game.keys['ArrowDown'] = false;
                     }, 100);
+                }
+                break;
+            case 'esc':
+                if (pressed) {
+                    // Exit sniper mode or pause game
+                    if (this.game.player && this.game.player.sniperMode) {
+                        this.game.player.sniperMode = false;
+                    }
+                    // Could add pause functionality here
                 }
                 break;
         }

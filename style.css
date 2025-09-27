@@ -288,17 +288,103 @@ body {
     line-height: 1.5;
 }
 
-/* MOBILE CONTROLS */
+/* MOBILE CONTROLS - NEW LAYOUT */
 .mobile-controls {
     position: fixed;
-    bottom: 20px;
-    left: 20px;
-    right: 20px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 28vh;
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
+    align-items: center;
     pointer-events: none;
     z-index: 1000;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+}
+
+/* Analog Stick - Left Side */
+.analog-stick-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.analog-stick {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 3px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stick-center {
+    width: 40px;
+    height: 40px;
+    background: rgba(52, 152, 219, 0.8);
+    border-radius: 50%;
+    position: absolute;
+    transition: all 0.1s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Center Bottom - Space Button */
+.center-controls {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 100%;
+    padding-bottom: 10px;
+}
+
+.space-btn {
+    pointer-events: auto;
+    width: 80px;
+    height: 80px;
+    font-size: 20px;
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: white;
+    border: 3px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 4px 20px rgba(231, 76, 60, 0.4);
+}
+
+/* Right Side - Large Action Buttons */
+.right-controls {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    height: 100%;
+}
+
+.top-row, .bottom-row {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.large-btn {
+    pointer-events: auto;
+    width: 70px;
+    height: 70px;
+    font-size: 16px;
+    border: 3px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.large-btn.esc-btn {
+    background: linear-gradient(135deg, #95a5a6, #7f8c8d);
 }
 
 .control-btn {
@@ -327,47 +413,6 @@ body {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
-.movement-controls {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-}
-
-.horizontal-controls {
-    display: flex;
-    gap: 10px;
-}
-
-.action-controls {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.special-controls {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.move-btn {
-    background: linear-gradient(135deg, #3498db, #2980b9);
-    color: white;
-}
-
-.action-btn {
-    background: linear-gradient(135deg, #e74c3c, #c0392b);
-    color: white;
-    font-size: 16px;
-}
-
-.special-btn {
-    background: linear-gradient(135deg, #f39c12, #e67e22);
-    color: white;
-    font-size: 14px;
-}
-
 /* Hide mobile controls on desktop */
 @media (min-width: 769px) {
     .mobile-controls {
@@ -375,7 +420,7 @@ body {
     }
 }
 
-/* MOBILE ONLY - Ultra clean interface with perfect proportions */
+/* MOBILE ONLY - Optimized mobile interface */
 @media (max-width: 768px) {
     /* Hide ALL unnecessary elements on mobile */
     #debugPanel,
@@ -383,80 +428,62 @@ body {
         display: none !important;
     }
 
-    /* Small header - 1/6 of screen */
+    /* Compact header - 12% of screen */
     .game-header {
-        height: 16.67vh !important; /* 1/6 */
-        padding: 8px !important;
+        height: 12vh !important;
+        padding: 5px !important;
         margin-bottom: 0 !important;
     }
 
     .game-header h1 {
-        font-size: 1.5em !important;
-        margin-bottom: 5px !important;
+        font-size: 1.2em !important;
+        margin-bottom: 2px !important;
     }
 
     .game-info {
-        gap: 5px !important;
+        gap: 3px !important;
+        justify-content: center !important;
     }
 
     .info-item {
-        min-width: 60px !important;
-        padding: 4px 6px !important;
+        min-width: 50px !important;
+        padding: 2px 4px !important;
     }
 
     .info-item .label {
-        font-size: 0.7em !important;
+        font-size: 0.6em !important;
     }
 
     .info-item span:last-child {
-        font-size: 1em !important;
+        font-size: 0.9em !important;
     }
 
-    /* Game canvas - 3/6 (50%) of screen */
+    /* Game canvas - 60% of screen height */
     body.game-started #gameCanvas {
         position: fixed;
-        top: 16.67vh; /* Start after header */
+        top: 12vh; /* Start after header */
         left: 0;
         width: 100vw !important;
-        height: 50vh !important; /* 3/6 of screen */
+        height: 60vh !important; /* 60% of screen */
         border: none;
         border-radius: 0;
         margin: 0;
         padding: 0;
     }
 
-    /* Mobile controls - 2/6 of screen at bottom */
+    /* Mobile controls - 28% of screen at bottom */
     body.game-started .mobile-controls {
         position: fixed !important;
         bottom: 0 !important;
         left: 0 !important;
         right: 0 !important;
-        height: 33.33vh !important; /* 2/6 */
-        justify-content: space-around !important;
+        height: 28vh !important; /* 28% of screen */
+        justify-content: space-between !important;
         align-items: center !important;
         z-index: 1000 !important;
-        padding: 15px !important;
+        padding: 10px !important;
         background: rgba(0, 0, 0, 0.1) !important;
         backdrop-filter: blur(5px) !important;
-    }
-
-    /* Optimize control layout for fluidity */
-    body.game-started .movement-controls {
-        flex: 1 !important;
-        justify-content: center !important;
-        gap: 15px !important;
-    }
-
-    body.game-started .action-controls {
-        flex: 1 !important;
-        justify-content: center !important;
-        gap: 20px !important;
-    }
-
-    body.game-started .special-controls {
-        flex: 1 !important;
-        justify-content: center !important;
-        gap: 20px !important;
     }
 
     /* Menu covers everything initially */

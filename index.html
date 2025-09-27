@@ -34,26 +34,28 @@
 
         <!-- MOBILE CONTROLS -->
         <div class="mobile-controls" id="mobileControls">
-            <!-- Movement Controls -->
-            <div class="movement-controls">
-                <button class="control-btn move-btn" id="moveUp" data-action="jump">↑</button>
-                <div class="horizontal-controls">
-                    <button class="control-btn move-btn" id="moveLeft" data-action="left">←</button>
-                    <button class="control-btn move-btn" id="moveDown" data-action="down">↓</button>
-                    <button class="control-btn move-btn" id="moveRight" data-action="right">→</button>
+            <!-- Left Side - Analog Stick -->
+            <div class="analog-stick-container">
+                <div class="analog-stick" id="analogStick">
+                    <div class="stick-center"></div>
                 </div>
             </div>
 
-            <!-- Action Controls -->
-            <div class="action-controls">
-                <button class="control-btn action-btn" id="bombBtn" data-action="bomb">💣</button>
-                <button class="control-btn action-btn" id="abilityBtn" data-action="ability">⚡</button>
+            <!-- Center Bottom - Space Button -->
+            <div class="center-controls">
+                <button class="control-btn space-btn" id="spaceBtn" data-action="space">💣</button>
             </div>
 
-            <!-- Special Controls -->
-            <div class="special-controls">
-                <button class="control-btn special-btn" id="sniperBtn" data-action="sniper">🎯</button>
-                <button class="control-btn special-btn" id="missileBtn" data-action="missile">🚀</button>
+            <!-- Right Side - Action Buttons -->
+            <div class="right-controls">
+                <div class="top-row">
+                    <button class="control-btn large-btn" id="sniperBtn" data-action="sniper">🎯</button>
+                    <button class="control-btn large-btn" id="missileBtn" data-action="missile">🚀</button>
+                </div>
+                <div class="bottom-row">
+                    <button class="control-btn large-btn" id="abilityBtn" data-action="ability">⚡</button>
+                    <button class="control-btn large-btn esc-btn" id="escBtn" data-action="esc">ESC</button>
+                </div>
             </div>
         </div>
 
