@@ -35,9 +35,11 @@
         <!-- MOBILE CONTROLS -->
         <div class="mobile-controls" id="mobileControls">
             <!-- Left Side - Analog Stick -->
-            <div class="analog-stick-container">
-                <div class="analog-stick" id="analogStick">
-                    <div class="stick-center"></div>
+            <div class="analog-container">
+                <div class="analog-base">
+                    <div class="analog-stick">
+                        <div class="analog-thumb"></div>
+                    </div>
                 </div>
             </div>
 
@@ -46,15 +48,22 @@
                 <button class="control-btn space-btn" id="spaceBtn" data-action="space">💣</button>
             </div>
 
-            <!-- Right Side - Action Buttons -->
-            <div class="right-controls">
-                <div class="top-row">
-                    <button class="control-btn large-btn" id="sniperBtn" data-action="sniper">🎯</button>
-                    <button class="control-btn large-btn" id="missileBtn" data-action="missile">🚀</button>
+            <!-- Right Side - Ability Cross -->
+            <div class="ability-cross">
+                <div class="cross-center">
+                    <button class="control-btn cross-btn" id="abilityBtn" data-action="ability">⚡</button>
                 </div>
-                <div class="bottom-row">
-                    <button class="control-btn large-btn" id="abilityBtn" data-action="ability">⚡</button>
-                    <button class="control-btn large-btn esc-btn" id="escBtn" data-action="esc">ESC</button>
+                <div class="cross-up">
+                    <button class="control-btn cross-btn" id="superJumpBtn" data-action="superJump">↑</button>
+                </div>
+                <div class="cross-right">
+                    <button class="control-btn cross-btn" id="clusterBtn" data-action="cluster">→</button>
+                </div>
+                <div class="cross-down">
+                    <button class="control-btn cross-btn" id="missileBtn" data-action="missile">↓</button>
+                </div>
+                <div class="cross-left">
+                    <button class="control-btn cross-btn" id="sniperBtn" data-action="sniper">←</button>
                 </div>
             </div>
         </div>

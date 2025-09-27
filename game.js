@@ -497,6 +497,11 @@ startGameMaster() {
         
         // Update UI
         this.updateUI();
+
+        // Update mobile controls
+        if (this.mobileControls) {
+            this.mobileControls.update();
+        }
     }
     
     render() {
