@@ -13,6 +13,13 @@ Versione mobile ottimizzata di Pigeon Bomber, il platform game dove guidi un pic
 - Modalità Game Master
 - Powerup casuali per livello
 
+### 📱 INTERFACCIA MOBILE PULITA
+- **Menu iniziale** visibile all'avvio
+- **Solo controlli touch** visibili durante il gioco
+- **Debug nascosto** completamente su mobile
+- **Header nascosto** dopo start game
+- **Full-screen experience** ottimizzata
+
 ### 📱 CONTROLLI TOUCH OTTIMIZZATI
 - **↑↓←→** - Pulsanti touch per movimento
 - **💣** - Bomba principale

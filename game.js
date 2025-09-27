@@ -278,26 +278,30 @@ class Game {
     startGame() {
         try {
             this.debugLog('🚀 START GAME clicked');
-            
+
             this.gameState = 'playing';
             this.debugLog('Game state set to playing');
-            
+
             this.currentLevel = 1;
             this.score = 0;
             this.lives = 3;
             this.currentBirdType = 'pigeon';
             this.debugLog('Game variables initialized');
-            
+
             this.hideAllMenus();
             this.debugLog('Menus hidden');
-            
+
+            // Add game-started class to body for mobile
+            document.body.classList.add('game-started');
+            this.debugLog('Game started class added to body');
+
             this.initializeLevel();
             this.debugLog('Level initialized');
-            
+
             // Start background music
             this.startBackgroundMusic();
             this.debugLog('Background music started');
-            
+
         this.debugLog('✅ START GAME completed successfully');
     } catch (error) {
         this.debugError('START GAME failed: ' + error.message);

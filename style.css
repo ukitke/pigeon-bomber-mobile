@@ -375,6 +375,47 @@ body {
     }
 }
 
+/* MOBILE ONLY - Clean mobile interface */
+@media (max-width: 768px) {
+    /* Hide debug panel completely on mobile */
+    #debugPanel {
+        display: none !important;
+    }
+
+    /* Hide controls explanation on mobile */
+    .controls-info {
+        display: none !important;
+    }
+
+    /* Hide game header on mobile after game starts */
+    body.game-started .game-header {
+        display: none !important;
+    }
+
+    /* Hide game header when menu is shown */
+    body:not(.game-started) .game-header {
+        display: none !important;
+    }
+
+    /* Ensure mobile controls stay visible during game */
+    body.game-started .mobile-controls {
+        display: flex !important;
+    }
+
+    /* Make canvas full width on mobile */
+    #gameCanvas {
+        width: 100%;
+        max-width: none;
+        height: auto;
+        margin-bottom: 0;
+    }
+
+    /* Show menu initially on mobile */
+    body:not(.game-started) #gameMenu {
+        display: flex !important;
+    }
+}
+
 /* Responsive design */
 @media (max-width: 1250px) {
     #gameCanvas {
